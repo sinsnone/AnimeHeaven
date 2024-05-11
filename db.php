@@ -16,7 +16,10 @@ $ssl_options = array(
 );
 
 // إنشاء اتصال بقاعدة البيانات مع استخدام SSL
-$conn = new mysqli($host, $username, $password, $database, null, null, $ssl_options);
+$conn = new mysqli($host, $username, $password, $database, null, null);
+
+// إذا كنت ترغب في تمكين الاتصال بالاستخدام SSL، استخدم دالة ssl_set() قبل الاتصال
+$conn->ssl_set("/path/to/client-key.pem", "/path/to/client-cert.pem", "/path/to/ca.pem", null, null);
 
 // التحقق من الاتصال
 if ($conn->connect_error) {
